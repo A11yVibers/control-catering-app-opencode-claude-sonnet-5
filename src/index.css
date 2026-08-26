@@ -1,0 +1,1000 @@
+/* ===========================================================
+   Homestead Table Catering — global styles
+   Design goals: WCAG 2.2 AA (and AAA where listed), reflow at
+   320px CSS width, resizable text, and no reliance on color
+   alone to convey meaning.
+   =========================================================== */
+
+:root {
+  --color-bg: #fdf8f3;
+  --color-surface: #ffffff;
+  --color-text: #2b1c12;
+  --color-text-muted: #5a4636;
+  --color-border: #8a7259;
+  --color-brand: #5c2e12;
+  --color-brand-dark: #3a2415;
+  --color-accent: #264d3b;
+  --color-error: #8a1c15;
+  --color-error-bg: #fdecea;
+  --color-success: #0f5132;
+  --color-success-bg: #e9f6ee;
+  --color-badge-protein-bg: #f3e3da;
+  --color-badge-protein-text: #6b2e12;
+  --color-badge-vegetarian-bg: #e4efe1;
+  --color-badge-vegetarian-text: #264d1f;
+  --color-badge-side-bg: #eee6d8;
+  --color-badge-side-text: #5a4636;
+  --focus-ring: 3px solid #1a56c4;
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --max-width: 72rem;
+  --radius: 0.5rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%; /* respects user browser font-size settings */
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Text spacing (SC 1.4.12): use relative units so user style overrides
+   for line-height/letter-spacing/paragraph-spacing are not defeated. */
+p,
+li,
+dd {
+  line-height: 1.6;
+  overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.3;
+  color: var(--color-brand-dark);
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 0.5em 0 0.75em;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin: 1.5em 0 0.6em;
+}
+
+h3 {
+  font-size: 1.15rem;
+  margin: 1em 0 0.5em;
+}
+
+a {
+  color: var(--color-brand);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+a:hover {
+  color: var(--color-brand-dark);
+}
+
+/* Visible, high-contrast focus indicator for every focusable element
+   (SC 2.4.7 / 2.4.11 style keyboard support, and general 4.1.2). */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+/* Skip link (SC 2.4.1 Bypass Blocks) */
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: -3rem;
+  background: var(--color-brand-dark);
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  z-index: 100;
+  transition: top 0.15s ease-in-out;
+}
+
+.skip-link:focus {
+  top: 0.5rem;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* ---------- Layout shell ---------- */
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1 0 auto;
+}
+
+.main-content:focus {
+  outline: none;
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.9rem 1.25rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--color-brand-dark);
+  text-decoration: none;
+}
+
+.brand:hover {
+  text-decoration: underline;
+}
+
+.brand__mark {
+  font-size: 1.6rem;
+}
+
+.primary-nav__list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+}
+
+.primary-nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 44px;
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius);
+  color: var(--color-brand-dark);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.primary-nav__link:hover {
+  background: var(--color-badge-side-bg);
+  text-decoration: underline;
+}
+
+.primary-nav__link.is-active {
+  background: var(--color-brand);
+  color: #fff;
+}
+
+.cart-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.6rem;
+  height: 1.6rem;
+  padding: 0 0.35rem;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.primary-nav__link.is-active .cart-count {
+  background: #fff;
+  color: var(--color-brand);
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  background: var(--color-brand-dark);
+  color: #fbf3ea;
+  padding: 2.5rem 0 1.5rem;
+  margin-top: 3rem;
+}
+
+.site-footer a {
+  color: #fbf3ea;
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 2rem;
+}
+
+.site-footer__heading {
+  color: #fff;
+  font-size: 1.05rem;
+  margin-top: 0;
+}
+
+.site-footer__list,
+.site-footer__social {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-footer__list li,
+.site-footer__social li {
+  margin-bottom: 0.5rem;
+}
+
+.site-footer__list a,
+.site-footer__social a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.site-footer__copyright {
+  text-align: center;
+  margin: 2rem 0 0;
+  font-size: 0.9rem;
+  color: #d9c7b6;
+}
+
+/* ---------- Buttons ---------- */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius);
+  border: 2px solid transparent;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button--primary {
+  background: var(--color-brand);
+  color: #fff;
+}
+
+.button--primary:hover {
+  background: var(--color-brand-dark);
+}
+
+.button--secondary {
+  background: transparent;
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
+.button--secondary:hover {
+  background: var(--color-badge-side-bg);
+}
+
+.button--text {
+  background: transparent;
+  color: var(--color-error);
+  border: 2px solid transparent;
+  text-decoration: underline;
+  padding: 0.5rem 0.6rem;
+}
+
+.button--large {
+  font-size: 1.1rem;
+  padding: 0.85rem 1.5rem;
+}
+
+.button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ---------- Hero / sections ---------- */
+
+.hero {
+  padding: 2.5rem 1.25rem;
+}
+
+.hero__lead {
+  font-size: 1.1rem;
+  max-width: 42rem;
+}
+
+.section {
+  padding: 1.5rem 0;
+}
+
+.section--highlight {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.steps-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1.5rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.steps-list li {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+
+/* ---------- Forms ---------- */
+
+.form-section {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin: 0 0 1.5rem;
+}
+
+.form-section legend {
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 0 0.4rem;
+  color: var(--color-brand-dark);
+}
+
+.form-field {
+  margin-bottom: 1.1rem;
+}
+
+.form-field label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.form-field input[type='text'],
+.form-field input[type='email'],
+.form-field input[type='tel'],
+.form-field input[type='date'],
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  max-width: 32rem;
+  padding: 0.6rem 0.75rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 1rem;
+  min-height: 44px;
+}
+
+.form-field textarea {
+  min-height: 6rem;
+}
+
+.form-field input:focus-visible,
+.form-field select:focus-visible,
+.form-field textarea:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 1px;
+}
+
+input[aria-invalid='true'],
+select[aria-invalid='true'],
+textarea[aria-invalid='true'] {
+  border-color: var(--color-error);
+}
+
+.field-hint {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  margin: 0.35rem 0 0;
+}
+
+.field-error {
+  color: var(--color-error);
+  font-weight: 600;
+  margin: 0.35rem 0 0;
+}
+
+.field-error:empty {
+  display: none;
+}
+
+.form-success {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+  border: 1px solid var(--color-success);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+}
+
+.error-summary {
+  border: 2px solid var(--color-error);
+  background: var(--color-error-bg);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.error-summary h2 {
+  margin-top: 0;
+  color: var(--color-error);
+  font-size: 1.15rem;
+}
+
+.error-summary a {
+  color: var(--color-error);
+  font-weight: 600;
+}
+
+.radio-field {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+  min-height: 44px;
+}
+
+.radio-field input[type='radio'] {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.date-picker-field {
+  max-width: 24rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.date-picker-field label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+/* ---------- Badges (never the sole indicator of category — text label
+   is always present alongside color, satisfying SC 1.4.1) ---------- */
+
+.badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  margin-bottom: 0.5rem;
+}
+
+.badge[data-category='protein'] {
+  background: var(--color-badge-protein-bg);
+  color: var(--color-badge-protein-text);
+}
+
+.badge[data-category='vegetarian'] {
+  background: var(--color-badge-vegetarian-bg);
+  color: var(--color-badge-vegetarian-text);
+}
+
+.badge[data-category='side'] {
+  background: var(--color-badge-side-bg);
+  color: var(--color-badge-side-text);
+}
+
+/* ---------- Food card grid ---------- */
+
+.food-card-grid {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1.5rem;
+}
+
+.food-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.food-card__image {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.food-card__body {
+  padding: 1rem 1.1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.food-card__name {
+  margin: 0 0 0.35rem;
+  font-size: 1.1rem;
+}
+
+.food-card__name-link {
+  text-decoration: none;
+  color: var(--color-brand-dark);
+}
+
+.food-card__name-link:hover {
+  text-decoration: underline;
+}
+
+.food-card__price {
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.food-card__price-unit {
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.food-card__desc {
+  color: var(--color-text-muted);
+  margin: 0 0 0.6rem;
+}
+
+.food-card__details-link {
+  align-self: flex-start;
+  margin-bottom: 1rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.food-card__add-row {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* ---------- Quantity stepper ---------- */
+
+.quantity-stepper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.quantity-stepper__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.quantity-stepper__controls {
+  display: inline-flex;
+  align-items: stretch;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.quantity-stepper__button {
+  min-width: 44px;
+  min-height: 44px;
+  border: none;
+  background: var(--color-badge-side-bg);
+  color: var(--color-brand-dark);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.quantity-stepper__button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.quantity-stepper__button:hover:not(:disabled) {
+  background: var(--color-border);
+}
+
+.quantity-stepper__input {
+  width: 3.4rem;
+  text-align: center;
+  border: none;
+  border-left: 2px solid var(--color-border);
+  border-right: 2px solid var(--color-border);
+  font-size: 1rem;
+  min-height: 44px;
+}
+
+/* ---------- Portion meter ---------- */
+
+.portion-meter {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  background: var(--color-surface);
+}
+
+.portion-meter__heading {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.portion-meter__bar {
+  position: relative;
+  height: 1.25rem;
+  background: var(--color-badge-side-bg);
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.portion-meter__fill {
+  height: 100%;
+  background: var(--color-accent);
+  transition: width 0.2s ease;
+}
+
+.portion-meter__min-marker {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--color-brand-dark);
+}
+
+.portion-meter__status {
+  margin: 0.6rem 0 0;
+  font-weight: 600;
+}
+
+.portion-meter__status.is-invalid {
+  color: var(--color-error);
+}
+
+.portion-meter__status.is-valid {
+  color: var(--color-success);
+}
+
+/* ---------- Item detail ---------- */
+
+.item-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 48rem) {
+  .item-detail {
+    grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.item-detail__figure {
+  margin: 0;
+}
+
+.item-detail__image {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+}
+
+.item-detail__credit {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  margin-top: 0.4rem;
+}
+
+.item-detail__price {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.item-detail__add-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.breadcrumb {
+  margin-top: 1.5rem;
+}
+
+/* ---------- Nutrition & invoice tables ---------- */
+
+.nutrition-table,
+.invoice-table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 30rem;
+  margin: 1rem 0 2rem;
+}
+
+.invoice-table {
+  max-width: none;
+}
+
+.nutrition-table caption,
+.invoice-table caption {
+  text-align: left;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.nutrition-table th,
+.nutrition-table td,
+.invoice-table th,
+.invoice-table td {
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.nutrition-table__indent th {
+  padding-left: 1.5rem;
+  font-weight: 400;
+}
+
+.nutrition-table__calories th,
+.nutrition-table__calories td {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.invoice-table tfoot th,
+.invoice-table tfoot td {
+  font-weight: 700;
+}
+
+/* ---------- Cart ---------- */
+
+.cart-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cart-list__item {
+  display: grid;
+  grid-template-columns: 5rem 1fr auto auto auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+@media (max-width: 40rem) {
+  .cart-list__item {
+    grid-template-columns: 4rem 1fr;
+    grid-template-areas:
+      'image details'
+      'image stepper'
+      'image total'
+      'image remove';
+    row-gap: 0.5rem;
+  }
+
+  .cart-list__image {
+    grid-area: image;
+  }
+
+  .cart-list__details {
+    grid-area: details;
+  }
+}
+
+.cart-list__image {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.cart-list__name {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.cart-list__price {
+  color: var(--color-text-muted);
+  margin: 0.2rem 0 0;
+  font-size: 0.9rem;
+}
+
+.cart-list__line-total {
+  font-weight: 700;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.cart-total {
+  font-size: 1.2rem;
+  margin: 1.5rem 0;
+}
+
+.menu-day-heading {
+  font-size: 1.1rem;
+}
+
+.menu-cart-link {
+  margin-bottom: 1.5rem;
+}
+
+/* ---------- Order review / checkout summary ---------- */
+
+.order-review {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.order-review__list {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+.order-review__list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px dashed var(--color-border);
+}
+
+.order-review__total {
+  font-size: 1.2rem;
+}
+
+/* ---------- Invoice / confirmation ---------- */
+
+.invoice {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  background: var(--color-surface);
+  margin-bottom: 1.5rem;
+}
+
+.invoice__header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.confirmation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.credits-list {
+  padding-left: 1.25rem;
+}
+
+.contact-methods {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-methods li {
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+}
+
+.contact-methods a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* Standalone action links (not embedded inline within a sentence) get
+   the same minimum target size as buttons (SC 2.5.5/2.5.8). */
+.standalone-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* ---------- Print (invoice) ---------- */
+
+@media print {
+  .site-header,
+  .site-footer,
+  .skip-link,
+  .confirmation-actions {
+    display: none !important;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
